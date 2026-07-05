@@ -18,7 +18,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
-    origin: "https://examnotes-ai-ytdj.onrender.com/",
+    origin: "https://examnotes-ai-ytdj.onrender.com",
     credentials: true,
   }),
 );

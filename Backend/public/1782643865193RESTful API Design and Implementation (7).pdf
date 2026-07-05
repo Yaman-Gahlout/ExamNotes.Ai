@@ -1,0 +1,3089 @@
+%PDF-1.3
+%ºß¬à
+3 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 4 0 R
+>>
+endobj
+4 0 obj
+<<
+/Length 3245
+>>
+stream
+0.5670000000000001 w
+0 G
+BT
+/F2 22 Tf
+25.2999999999999972 TL
+0 g
+42.5196850393700814 785.1970866141732586 Td
+(RESTful API Design and Implementation) Tj
+ET
+BT
+/F2 16 Tf
+18.3999999999999986 TL
+0 g
+42.5196850393700814 742.6774015748030706 Td
+(Overview) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 714.3309448818897636 Td
+(This study material covers the fundamental principles, design strategies, implementation) Tj
+T* (considerations, and security best practices for developing RESTful APIs. It delves into core) Tj
+T* (concepts like HTTP fundamentals, resource modeling, data formats, and advanced topics such) Tj
+T* (as API versioning, documentation, testing, authentication, and authorization, preparing students) Tj
+T* (for building robust and scalable web services.) Tj
+ET
+BT
+/F2 16 Tf
+18.3999999999999986 TL
+0 g
+42.5196850393700814 603.7797637795274568 Td
+(Learning Objectives) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 575.4333070866141497 Td
+(• Understand the evolution of web services and the core differences between SOAP and REST.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 544.2522047244094665 Td
+(• Grasp the architectural constraints of REST and apply them in API design.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 513.0711023622046696 Td
+(• Master HTTP fundamentals, including methods, status codes, and headers, for effective API) Tj
+T* (development.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 462.0474803149605805 Td
+(• Learn to identify, model, and design RESTful resources using best practices for URIs, query) Tj
+T* (parameters, and hypermedia.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 411.0238582677164914 Td
+(• Explore common data formats like JSON, XML, and YAML, and implement content negotiation.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 379.8427559055117513 Td
+(• Acquire practical knowledge of API development concepts, including serialization, error) Tj
+T* (handling, and database integration.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 328.8191338582676053 Td
+(• Understand the importance of API documentation using OpenAPI Specification and implement) Tj
+T* (robust testing strategies.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 277.7955118110235162 Td
+(• Implement various security measures for APIs, including authentication \(OAuth2, JWT\),) Tj
+T* (authorization, CORS, and protection against common attacks.) Tj
+ET
+BT
+/F2 16 Tf
+18.3999999999999986 TL
+0 g
+42.5196850393700814 226.7718897637794271 Td
+(Definitions) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 198.4254330708660063 Td
+(API \(Application Programming Interface\): A set of definitions and protocols for building and) Tj
+T* (integrating application software. It allows different software systems to communicate with each) Tj
+T* (other.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 127.559291338582625 Td
+(REST \(Representational State Transfer\): An architectural style for designing networked) Tj
+T* (applications. It relies on a stateless, client-server protocol, almost always HTTP.) Tj
+ET
+endstream
+endobj
+5 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 6 0 R
+>>
+endobj
+6 0 obj
+<<
+/Length 3575
+>>
+stream
+0.5670000000000001 w
+0 G
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 785.1970866141732586 Td
+(Resource: Any identifiable entity that can be accessed via an API, such as a user, product, or) Tj
+T* (order. In REST, everything is a resource.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 734.1734645669291695 Td
+(Representation: The format in which a resource's current state is delivered to the client,) Tj
+T* (commonly JSON or XML.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 683.1498425196850803 Td
+(Statelessness \(REST Constraint\): Each request from a client to a server must contain all the) Tj
+T* (information necessary to understand the request, and the server must not store any client) Tj
+T* (context between requests.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 612.2837007874015853 Td
+(Cacheable \(REST Constraint\): Responses must explicitly or implicitly define themselves as) Tj
+T* (cacheable or non-cacheable to prevent clients from reusing stale or inappropriate data.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 561.2600787401574962 Td
+(Uniform Interface \(REST Constraint\): A central feature of REST, simplifying the overall system) Tj
+T* (architecture by ensuring that all components interact in a standardized way.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 510.2364566929133503 Td
+(Idempotent: An operation is idempotent if executing it multiple times produces the same result) Tj
+T* (as executing it once. \(e.g., GET, PUT, DELETE\).) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 459.2128346456692611 Td
+(HTTP Status Code: A three-digit number returned by a server in response to an HTTP request,) Tj
+T* (indicating the outcome of the request \(e.g., 200 OK, 404 Not Found\).) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 408.1892125984251152 Td
+(URI \(Uniform Resource Identifier\): A string of characters used to identify a resource. In REST,) Tj
+T* (URIs are used to locate resources.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 357.1655905511810261 Td
+(HATEOAS \(Hypermedia As The Engine Of Application State\): A constraint of the REST) Tj
+T* (architectural style where a client interacts with a network application entirely through hypermedia) Tj
+T* (dynamically provided by application servers.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 286.2994488188975311 Td
+(JSON \(JavaScript Object Notation\): A lightweight data-interchange format. It is easy for humans) Tj
+T* (to read and write and for machines to parse and generate.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 235.2758267716534419 Td
+(OpenAPI Specification: A standard, language-agnostic interface for REST APIs, which allows) Tj
+T* (both humans and computers to discover and understand the capabilities of the service without) Tj
+T* (access to source code or documentation.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 164.4096850393699469 Td
+(JWT \(JSON Web Token\): A compact, URL-safe means of representing claims to be transferred) Tj
+T* (between two parties. It is commonly used for authentication and information exchange.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 113.3860629921258578 Td
+(CORS \(Cross-Origin Resource Sharing\): A mechanism that allows resources on a web page to) Tj
+T* (be requested from another domain outside the domain from which the first resource was served.) Tj
+ET
+endstream
+endobj
+7 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 8 0 R
+>>
+endobj
+8 0 obj
+<<
+/Length 1955
+>>
+stream
+0.5670000000000001 w
+0 G
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 785.1970866141732586 Td
+(OAuth2: An authorization framework that enables an application to obtain limited access to a) Tj
+T* (user's account on an HTTP service, such as Facebook or Google.) Tj
+ET
+BT
+/F2 16 Tf
+18.3999999999999986 TL
+0 g
+42.5196850393700814 734.1734645669291695 Td
+(Key Concepts) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 705.8270078740157487 Td
+(• REST Architectural Constraints \(Client-Server, Statelessness, Cacheable, Layered System,) Tj
+T* (Uniform Interface, Code-On-Demand\)) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 654.8033858267716596 Td
+(• HTTP Methods and their Semantics \(GET, POST, PUT, DELETE, PATCH\)) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 623.6222834645668627 Td
+(• Resource Modeling and URI Design Principles) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 592.4411811023621794 Td
+(• Content Negotiation and Data Formats \(JSON, XML, YAML\)) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 561.2600787401574962 Td
+(• API Versioning Strategies) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 530.0789763779526993 Td
+(• API Documentation with OpenAPI/Swagger) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 498.8978740157479592 Td
+(• API Testing \(Automated, Mock Servers, Contract Testing\)) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 467.716771653543276 Td
+(• API Security: Authentication \(Basic, Token-Based, OAuth2, JWT\), Authorization, CORS, Rate) Tj
+T* (Limiting, Input Sanitization, Common Attacks) Tj
+ET
+BT
+/F2 16 Tf
+18.3999999999999986 TL
+0 g
+42.5196850393700814 416.69314960629913 Td
+(Detailed Notes) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 388.3466929133857661 Td
+(1. Introduction to Web Services & REST Architecture) Tj
+ET
+endstream
+endobj
+9 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 10 0 R
+>>
+endobj
+10 0 obj
+<<
+/Length 3209
+>>
+stream
+0.5670000000000001 w
+0 G
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 785.1970866141732586 Td
+(Web services facilitate communication between applications over the web. They have evolved) Tj
+T* (significantly, with REST becoming a dominant architectural style due to its simplicity and) Tj
+T* (scalability.) Tj
+T* () Tj
+T* (**What is an API?**) Tj
+T* (An API defines a clear interface for how software components should interact. For web APIs,) Tj
+T* (this typically involves defining request formats, response structures, and available operations.) Tj
+T* () Tj
+T* (**What makes an API RESTful?**) Tj
+T* (A RESTful API adheres to the REST architectural style, which is based on six core constraints. It) Tj
+T* (treats server-side objects as 'resources' that can be manipulated using a uniform interface.) Tj
+T* () Tj
+T* (**REST Architectural Constraints:**) Tj
+T* (*   **Client-Server:** Separation of concerns. Clients are unaware of the server's internal) Tj
+T* (storage, and servers are unaware of the client's UI. This improves portability and scalability.) Tj
+T* (*   **Statelessness:** Each request from client to server must contain all necessary information.) Tj
+T* (The server must not store any client context between requests. This improves reliability and) Tj
+T* (scalability, making servers easier to horizontally scale.) Tj
+T* (*   **Cacheable:** Responses should explicitly indicate whether they are cacheable. This) Tj
+T* (reduces server load and improves performance by allowing clients to store and reuse) Tj
+T* (responses.) Tj
+T* (*   **Layered System:** A client cannot tell whether it is connected directly to the end server or to) Tj
+T* (an intermediary. This enables flexible architecture \(e.g., load balancers, proxies\).) Tj
+T* (*   **Uniform Interface:** Simplifies overall system architecture and improves visibility. It includes) Tj
+T* (four sub-constraints:) Tj
+T* (    *   **Identification of resources:** Resources are identified by URIs.) Tj
+T* (    *   **Manipulation of resources through representations:** Clients interact with resources by) Tj
+T* (exchanging representations \(e.g., JSON, XML\).) Tj
+T* (    *   **Self-descriptive messages:** Each message contains enough information to describe) Tj
+T* (how to process the message.) Tj
+T* (    *   **Hypermedia As The Engine Of Application State \(HATEOAS\):** Resources should) Tj
+T* (contain links to other related resources, guiding the client through the API.) Tj
+T* (*   **Code-On-Demand \(Optional\):** Servers can temporarily extend or customize client) Tj
+T* (functionality by transferring executable code \(e.g., JavaScript applets\). This constraint is rarely) Tj
+T* (used in typical REST APIs.) Tj
+T* () Tj
+T* (**Understanding Resources, Representations, and Actions:**) Tj
+T* (*   **Resource:** The 'what' - an object or data that can be accessed \(e.g., `/users`,) Tj
+T* (`/products/123`\). Identified by a URI.) Tj
+T* (*   **Representation:** The 'how' - the format of the data sent or received \(e.g., JSON object `{) Tj
+T* ("id": 1, "name": "Alice" }`\).) Tj
+T* (*   **Action:** The 'verb' - performed on a resource using HTTP methods \(e.g., GET to retrieve,) Tj
+T* (POST to create\).) Tj
+ET
+endstream
+endobj
+11 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 12 0 R
+>>
+endobj
+12 0 obj
+<<
+/Length 157
+>>
+stream
+0.5670000000000001 w
+0 G
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 785.1970866141732586 Td
+(2. HTTP Fundamentals for API Development) Tj
+ET
+endstream
+endobj
+13 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 14 0 R
+>>
+endobj
+14 0 obj
+<<
+/Length 4110
+>>
+stream
+0.5670000000000001 w
+0 G
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 785.1970866141732586 Td
+(HTTP \(Hypertext Transfer Protocol\) is the foundation of data communication for the World Wide) Tj
+T* (Web and is central to RESTful APIs.) Tj
+T* () Tj
+T* (**HTTP Protocol Overview:**) Tj
+T* (HTTP is a client-server protocol. A client \(e.g., web browser, mobile app\) sends a request to a) Tj
+T* (server, and the server sends back a response.) Tj
+T* () Tj
+T* (**HTTP Methods and their Semantics:**) Tj
+T* (These methods \(verbs\) indicate the desired action to be performed on the identified resource.) Tj
+T* (*   **GET:** Retrieves a resource. Should be idempotent and safe \(no side effects\).) Tj
+T* (*   **POST:** Creates a new resource or submits data to be processed. Not idempotent.) Tj
+T* (*   **PUT:** Updates an existing resource completely or creates a resource if it doesn't exist at a) Tj
+T* (specific URI. Idempotent.) Tj
+T* (*   **DELETE:** Removes a resource. Idempotent.) Tj
+T* (*   **PATCH:** Partially updates an existing resource. Not necessarily idempotent, but often) Tj
+T* (treated as such if the patch is designed to be atomic.) Tj
+T* () Tj
+T* (**HTTP Headers, Cookies, and Sessions:**) Tj
+T* (*   **Headers:** Key-value pairs in HTTP requests and responses that carry metadata.) Tj
+T* (Examples: `Content-Type`, `Authorization`, `User-Agent`, `Accept`.) Tj
+T* (*   **Cookies:** Small pieces of data stored on the client side by the server. Used for session) Tj
+T* (management, personalization.) Tj
+T* (*   **Sessions:** Server-side mechanism to maintain state for a series of requests from a client,) Tj
+T* (often identified by a session ID stored in a cookie.) Tj
+T* () Tj
+T* (**HTTP Status Codes:**) Tj
+T* (Indicate the outcome of an HTTP request. Organized into five classes:) Tj
+T* (*   **1xx Informational:** Request received, continuing process.) Tj
+T* (*   **2xx Success:** Action successfully received, understood, and accepted.) Tj
+T* (    *   `200 OK`: Standard success for GET, PUT, PATCH, DELETE.) Tj
+T* (    *   `201 Created`: Resource successfully created \(POST\).) Tj
+T* (    *   `204 No Content`: Successful request, but no content to return \(e.g., successful DELETE\).) Tj
+T* (*   **3xx Redirection:** Further action needs to be taken to complete the request.) Tj
+T* (    *   `301 Moved Permanently`.) Tj
+T* (*   **4xx Client Error:** Request contains bad syntax or cannot be fulfilled.) Tj
+T* (    *   `400 Bad Request`: General client error.) Tj
+T* (    *   `401 Unauthorized`: Authentication required or failed.) Tj
+T* (    *   `403 Forbidden`: Server understood the request but refuses authorization.) Tj
+T* (    *   `404 Not Found`: Resource not found.) Tj
+T* (    *   `405 Method Not Allowed`: HTTP method used is not supported for the resource.) Tj
+T* (    *   `409 Conflict`: Request conflict with current state of the target resource.) Tj
+T* (*   **5xx Server Error:** Server failed to fulfill an apparently valid request.) Tj
+T* (    *   `500 Internal Server Error`: Generic server-side error.) Tj
+T* (    *   `503 Service Unavailable`: Server not ready to handle the request.) Tj
+T* () Tj
+T* (**Request/Response Lifecycle:**) Tj
+T* (1.  Client sends an HTTP Request \(Method, URI, Headers, Body\).) Tj
+T* (2.  Server receives, processes the request, and performs operations \(e.g., database interaction\).) Tj
+T* (3.  Server sends an HTTP Response \(Status Code, Headers, Body\).) Tj
+T* (4.  Client receives and processes the response.) Tj
+T* () Tj
+T* (**Content-Type and Accept Headers, MIME Types:**) Tj
+T* (*   **`Content-Type` \(Request/Response\):** Indicates the media type \(MIME type\) of the) Tj
+T* (resource or data in the request/response body \(e.g., `application/json`, `text/html`\).) Tj
+T* (*   **`Accept` \(Request\):** Specifies which media types the client is willing to accept in the) Tj
+T* (response.) Tj
+T* (*   **MIME Types \(Multipurpose Internet Mail Extensions\):** Standard way to classify file types) Tj
+T* (and data formats \(e.g., `image/jpeg`, `application/pdf`\). They are crucial for content negotiation.) Tj
+ET
+endstream
+endobj
+15 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 16 0 R
+>>
+endobj
+16 0 obj
+<<
+/Length 161
+>>
+stream
+0.5670000000000001 w
+0 G
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 785.1970866141732586 Td
+(3. Resource Modeling & API Design Principles) Tj
+ET
+endstream
+endobj
+17 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 18 0 R
+>>
+endobj
+18 0 obj
+<<
+/Length 3672
+>>
+stream
+0.5670000000000001 w
+0 G
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 785.1970866141732586 Td
+(Effective API design focuses on clear, intuitive, and consistent resource modeling.) Tj
+T* () Tj
+T* (**Identifying REST Resources:**) Tj
+T* (*   Think of nouns, not verbs. Resources represent data entities \(e.g., `users`, `products`,) Tj
+T* (`orders`\).) Tj
+T* (*   They should be distinct, identifiable, and addressable.) Tj
+T* () Tj
+T* (**URI Design Guidelines:**) Tj
+T* (*   **Use nouns:** `GET /users`, `GET /products/123` \(good\); `GET /getAllUsers` \(bad\).) Tj
+T* (*   **Use plural nouns for collections:** `/users` rather than `/user` for a collection.) Tj
+T* (*   **Keep URIs simple and intuitive:** Easy to guess and understand.) Tj
+T* (*   **Use hierarchy for related resources:** `/users/{id}/orders` for orders belonging to a specific) Tj
+T* (user.) Tj
+T* (*   **Avoid file extensions in URIs:** Use `Accept` header for content type negotiation.) Tj
+T* (*   **Use lowercase letters, hyphens for readability:** `/user-accounts` vs `/UserAccounts`.) Tj
+T* () Tj
+T* (**Hierarchical vs. Flat Resource Structures:**) Tj
+T* (*   **Hierarchical:** Reflects relationships between resources \(e.g.,) Tj
+T* (`/customers/{customerId}/orders/{orderId}`\). Good for naturally nested data.) Tj
+T* (*   **Flat:** All resources at the top level \(e.g., `/customers`, `/orders`\). Simpler for unrelated) Tj
+T* (resources.) Tj
+T* () Tj
+T* (**Using Nouns vs. Verbs in Endpoints:**) Tj
+T* (*   **Nouns:** Used in URIs to identify resources \(e.g., `/products`\).) Tj
+T* (*   **Verbs:** Used as HTTP methods to describe the action on the resource \(e.g., `GET`,) Tj
+T* (`POST`, `PUT`, `DELETE`\).) Tj
+T* () Tj
+T* (**Designing CRUD Operations:**) Tj
+T* (*   **Create:** `POST /collection` \(e.g., `POST /users` to create a new user\).) Tj
+T* (*   **Read \(Collection\):** `GET /collection` \(e.g., `GET /users` to list all users\).) Tj
+T* (*   **Read \(Single\):** `GET /collection/{id}` \(e.g., `GET /users/123` to get user with ID 123\).) Tj
+T* (*   **Update \(Full\):** `PUT /collection/{id}` \(e.g., `PUT /users/123` to replace user 123) Tj
+T* (completely\).) Tj
+T* (*   **Update \(Partial\):** `PATCH /collection/{id}` \(e.g., `PATCH /users/123` to update specific) Tj
+T* (fields of user 123\).) Tj
+T* (*   **Delete:** `DELETE /collection/{id}` \(e.g., `DELETE /users/123`\).) Tj
+T* () Tj
+T* (**Query Parameters, Filters, Sorting, and Pagination:**) Tj
+T* (Used to modify the behavior of a GET request.) Tj
+T* (*   **Query Parameters:** General-purpose key-value pairs \(`/products?category=electronics`\).) Tj
+T* (*   **Filters:** Narrow down results based on criteria \(`/products?status=available`\).) Tj
+T* (*   **Sorting:** Order results \(`/products?sort=price,desc`\).) Tj
+T* (*   **Pagination:** Retrieve data in chunks \(`/products?page=2&size=10`\).) Tj
+T* () Tj
+T* (**Hypermedia \(HATEOAS\) Concept:**) Tj
+T* (Resources should include links to related resources or available actions, making the API) Tj
+T* (self-discoverable. For example, a user resource might contain links to their orders or a self-link.) Tj
+T* () Tj
+T* (**API Versioning Strategies:**) Tj
+T* (Allows for evolving APIs without breaking existing clients.) Tj
+T* (*   **URI Versioning:** Include version in the URI \(e.g., `/v1/users`\). Simple, but URIs change.) Tj
+T* (*   **Header-based Versioning:** Use a custom HTTP header \(e.g., `X-API-Version: 1`\). URIs) Tj
+T* (remain clean, but harder to test in browser.) Tj
+T* (*   **Query Parameter Versioning:** Include version as a query parameter \(e.g.,) Tj
+T* (`/users?api-version=1`\). Easy to test, but URIs look less clean.) Tj
+ET
+endstream
+endobj
+19 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 20 0 R
+>>
+endobj
+20 0 obj
+<<
+/Length 732
+>>
+stream
+0.5670000000000001 w
+0 G
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 785.1970866141732586 Td
+(Example:) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 754.0159842519684616 Td
+(URI for filtering:) Tj
+T* (`/products?category=electronics&minPrice=100&sortBy=name,asc&page=1&limit=20`) Tj
+T* () Tj
+T* (HATEOAS example for a user resource:) Tj
+T* () Tj
+T* ({) Tj
+T* (  "id": 123,) Tj
+T* (  "name": "Alice",) Tj
+T* (  "_links": {) Tj
+T* (    "self": { "href": "/users/123" },) Tj
+T* (    "orders": { "href": "/users/123/orders" }) Tj
+T* (  }) Tj
+T* (}) Tj
+T* () Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 464.8821259842518998 Td
+(4. JSON, Data Formats & Content Negotiation) Tj
+ET
+endstream
+endobj
+21 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 22 0 R
+>>
+endobj
+22 0 obj
+<<
+/Length 2712
+>>
+stream
+0.5670000000000001 w
+0 G
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 785.1970866141732586 Td
+(Data formats are crucial for how information is exchanged between clients and servers. Content) Tj
+T* (negotiation allows clients and servers to agree on the best format.) Tj
+T* () Tj
+T* (**JSON Structure and Schema Design:**) Tj
+T* (*   **JSON \(JavaScript Object Notation\):** A human-readable and machine-parseable format.) Tj
+T* (Uses key-value pairs and arrays.) Tj
+T* (    *   **Objects:** `{ "key": "value", "number": 123 }`) Tj
+T* (    *   **Arrays:** `[ "item1", "item2", { "object": true } ]`) Tj
+T* (*   **JSON Schema:** A vocabulary that allows you to annotate and validate JSON documents.) Tj
+T* (It defines the structure, data types, and constraints for JSON payloads, ensuring data) Tj
+T* (consistency.) Tj
+T* () Tj
+T* (**XML Overview:**) Tj
+T* (*   **XML \(Extensible Markup Language\):** A markup language defining a set of rules for) Tj
+T* (encoding documents in a format that is both human-readable and machine-readable. Was) Tj
+T* (dominant before JSON. More verbose.) Tj
+T* () Tj
+T* (**YAML Basics:**) Tj
+T* (*   **YAML \(YAML Ain't Markup Language\):** A human-friendly data serialization standard for all) Tj
+T* (programming languages. Often used for configuration files. More concise than XML.) Tj
+T* () Tj
+T* (**Content Negotiation using Headers:**) Tj
+T* (*   **`Accept` Header \(Client to Server\):** The client sends an `Accept` header to tell the server) Tj
+T* (what media types it prefers to receive \(e.g., `Accept: application/json, application/xml`\).) Tj
+T* (*   **`Content-Type` Header \(Server to Client & Client to Server\):** The server sends) Tj
+T* (`Content-Type` in its response to indicate the format of the response body. The client sends) Tj
+T* (`Content-Type` in its request to indicate the format of the request body.) Tj
+T* () Tj
+T* (**Designing Standardized Request/Response Bodies:**) Tj
+T* (*   Consistency is key: Use consistent field names, data types, and error structures across your) Tj
+T* (API.) Tj
+T* (*   Often, a standard wrapper for responses \(e.g., `{"data": ..., "meta": ...}`\) or errors \(`{"error":) Tj
+T* ({"code": ..., "message": ...}}`\) is used.) Tj
+T* () Tj
+T* (**Data Validation Strategies:**) Tj
+T* (Ensures data integrity and security.) Tj
+T* (*   **Client-side validation:** Initial check for user input \(e.g., browser forms\).) Tj
+T* (*   **Server-side validation:** Mandatory and robust validation performed on the API server) Tj
+T* (before processing data. This protects against malicious input and ensures data adheres to) Tj
+T* (business rules. Libraries like JSR 303 \(Bean Validation in Java\) are commonly used.) Tj
+ET
+endstream
+endobj
+23 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 24 0 R
+>>
+endobj
+24 0 obj
+<<
+/Length 826
+>>
+stream
+0.5670000000000001 w
+0 G
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 785.1970866141732586 Td
+(Example:) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 754.0159842519684616 Td
+(JSON example:) Tj
+T* () Tj
+T* ({) Tj
+T* (  "productName": "Laptop",) Tj
+T* (  "price": 1200.00,) Tj
+T* (  "features": [) Tj
+T* (    "16GB RAM",) Tj
+T* (    "512GB SSD") Tj
+T* (  ]) Tj
+T* (}) Tj
+T* () Tj
+T* () Tj
+T* (Content Negotiation example:) Tj
+T* (Client Request:) Tj
+T* (`GET /products/123`) Tj
+T* (`Accept: application/json`) Tj
+T* () Tj
+T* (Server Response:) Tj
+T* (`Content-Type: application/json`) Tj
+T* (`{ "id": 123, "name": "Laptop" }`) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 345.8270078740156919 Td
+(5. API Development – using Java Spring Boot \(Conceptual Approach\)) Tj
+ET
+endstream
+endobj
+25 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 26 0 R
+>>
+endobj
+26 0 obj
+<<
+/Length 3773
+>>
+stream
+0.5670000000000001 w
+0 G
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 785.1970866141732586 Td
+(This module covers the practical aspects of building RESTful APIs, often using frameworks like) Tj
+T* (Spring Boot for Java, which simplifies backend development.) Tj
+T* () Tj
+T* (**Setting up the Backend Project:**) Tj
+T* (Typically involves initializing a project with build tools \(e.g., Maven, Gradle\), setting up) Tj
+T* (dependencies for web, data access, and testing.) Tj
+T* () Tj
+T* (**Creating REST Controllers/Routes:**) Tj
+T* (Controllers define the entry points \(endpoints\) for the API, mapping incoming HTTP requests to) Tj
+T* (specific handler methods. They act as the 'front door' of your API.) Tj
+T* () Tj
+T* (**Handling Request Parameters and Body:**) Tj
+T* (*   **Path Variables:** Extract values from the URI path \(e.g., `/users/{id}`\).) Tj
+T* (*   **Query Parameters:** Extract values from the query string \(e.g.,) Tj
+T* (`/products?category=electronics`\).) Tj
+T* (*   **Request Body:** Process the data sent in the request's payload \(e.g., JSON for `POST` or) Tj
+T* (`PUT`\). Often involves deserialization.) Tj
+T* () Tj
+T* (**JSON Serialization/Deserialization:**) Tj
+T* (*   **Serialization:** Converting Java objects \(or objects from other languages\) into JSON format) Tj
+T* (for sending in a response.) Tj
+T* (*   **Deserialization:** Converting incoming JSON data from a request body into Java objects for) Tj
+T* (processing.) Tj
+T* (Libraries like Jackson \(in Java\) automate this.) Tj
+T* () Tj
+T* (**Service Layer Implementation:**) Tj
+T* (This layer contains the core business logic of the application. Controllers delegate tasks to the) Tj
+T* (service layer to keep themselves lean. It's responsible for orchestrating operations, applying) Tj
+T* (business rules, and interacting with the data access layer.) Tj
+T* () Tj
+T* (**Error Handling using Exceptions/Custom Error Responses:**) Tj
+T* (Proper error handling is crucial for a robust API. Instead of showing stack traces, APIs should) Tj
+T* (return standardized, informative error responses \(e.g., 4xx for client errors, 5xx for server errors\)) Tj
+T* (with consistent JSON structures explaining the problem.) Tj
+T* () Tj
+T* (**Logging and Monitoring Basics:**) Tj
+T* (*   **Logging:** Recording events, errors, and informational messages in the application.) Tj
+T* (Essential for debugging and operational insights.) Tj
+T* (*   **Monitoring:** Observing the system's performance, health, and usage patterns \(e.g.,) Tj
+T* (request rates, response times, error rates\) to detect issues and optimize.) Tj
+T* () Tj
+T* (**Connecting to Databases:**) Tj
+T* (APIs often need to persist data. This involves configuring database connections, defining data) Tj
+T* (models \(entities\), and using ORM \(Object-Relational Mapping\) frameworks \(e.g., Hibernate with) Tj
+T* (Spring Data JPA\) to interact with the database.) Tj
+T* () Tj
+T* (**CRUD APIs with Persistent Storage:**) Tj
+T* (Implementing the Create, Read, Update, Delete operations by integrating the service layer with) Tj
+T* (the database to perform actual data manipulation.) Tj
+T* () Tj
+T* (**File Upload/Download in REST APIs:**) Tj
+T* (*   **Upload:** Typically handled using `multipart/form-data` content type, where the file is sent) Tj
+T* (as part of the request body.) Tj
+T* (*   **Download:** The server streams the file content with appropriate `Content-Type` and) Tj
+T* (`Content-Disposition` headers.) Tj
+T* () Tj
+T* (**Async API Operations:**) Tj
+T* (For long-running tasks, APIs can be designed to respond immediately with an acknowledgement) Tj
+T* (and a link to a status resource, allowing the client to poll for the final result. This prevents) Tj
+T* (timeouts and improves user experience.) Tj
+ET
+endstream
+endobj
+27 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 28 0 R
+>>
+endobj
+28 0 obj
+<<
+/Length 588
+>>
+stream
+0.5670000000000001 w
+0 G
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 785.1970866141732586 Td
+(Example:) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 754.0159842519684616 Td
+(Error Response Example:) Tj
+T* () Tj
+T* ({) Tj
+T* (  "timestamp": "2023-10-27T10:30:00Z",) Tj
+T* (  "status": 404,) Tj
+T* (  "error": "Not Found",) Tj
+T* (  "message": "User with ID 123 not found",) Tj
+T* (  "path": "/users/123") Tj
+T* (}) Tj
+T* () Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 544.2522047244094665 Td
+(6. API Documentation & Testing) Tj
+ET
+endstream
+endobj
+29 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 30 0 R
+>>
+endobj
+30 0 obj
+<<
+/Length 2955
+>>
+stream
+0.5670000000000001 w
+0 G
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 785.1970866141732586 Td
+(Good API documentation is crucial for developers consuming your API. Robust testing ensures) Tj
+T* (its reliability and correctness.) Tj
+T* () Tj
+T* (**Importance of API Documentation:**) Tj
+T* (*   **Developer Experience:** Makes it easy for other developers to understand and use your) Tj
+T* (API.) Tj
+T* (*   **Maintenance:** Helps maintain consistency and aids in debugging.) Tj
+T* (*   **Onboarding:** Speeds up the process of new developers joining a project.) Tj
+T* () Tj
+T* (**OpenAPI Specification Overview:**) Tj
+T* (*   A language-agnostic, open standard for describing REST APIs. It defines a standard format to) Tj
+T* (describe endpoints, operations, input/output parameters, authentication methods, etc.) Tj
+T* () Tj
+T* (**Using Swagger UI/Swagger Editor:**) Tj
+T* (*   **Swagger UI:** A tool that generates interactive API documentation from an OpenAPI) Tj
+T* (Specification. Allows users to visualize and interact with the API's resources without any) Tj
+T* (implementation logic.) Tj
+T* (*   **Swagger Editor:** A browser-based editor to write and validate OpenAPI YAML/JSON) Tj
+T* (definitions.) Tj
+T* () Tj
+T* (**Generating OpenAPI Docs Automatically:**) Tj
+T* (Many frameworks \(like Spring Boot with Springdoc-OpenAPI\) can automatically generate) Tj
+T* (OpenAPI specifications from your code \(e.g., annotations on controllers\), reducing manual effort) Tj
+T* (and ensuring documentation stays synchronized with the code.) Tj
+T* () Tj
+T* (**Automated API Testing with Postman, cURL, JUnit/TestNG:**) Tj
+T* (*   **Postman:** A popular tool for API development, testing, and documentation. Allows sending) Tj
+T* (requests, inspecting responses, and automating test suites.) Tj
+T* (*   **cURL:** A command-line tool for transferring data with URLs. Useful for quick manual) Tj
+T* (testing and scripting API calls.) Tj
+T* (*   **JUnit/TestNG:** Unit testing frameworks for Java. Used for writing automated tests for) Tj
+T* (individual API components \(e.g., controller methods, service logic\). Integrates well into CI/CD) Tj
+T* (pipelines.) Tj
+T* () Tj
+T* (**Mock Servers & API Simulation:**) Tj
+T* (*   **Mock Servers:** Simulate API responses without a live backend. Useful for frontend) Tj
+T* (development, testing edge cases, or when the backend is not yet ready. Tools like MockLab,) Tj
+T* (WireMock.) Tj
+T* (*   **API Simulation:** Allows developers to test how their applications behave when integrating) Tj
+T* (with external APIs without actually hitting the external services.) Tj
+T* () Tj
+T* (**Contract Testing Basics:**) Tj
+T* (*   Ensures that a service provider \(API\) and a service consumer \(client\) adhere to a shared) Tj
+T* (understanding \(contract\) of how the API should behave. It prevents breaking changes and) Tj
+T* (ensures compatibility between integrated services. Tools like Pact are used.) Tj
+ET
+endstream
+endobj
+31 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 32 0 R
+>>
+endobj
+32 0 obj
+<<
+/Length 160
+>>
+stream
+0.5670000000000001 w
+0 G
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 785.1970866141732586 Td
+(7. Security, Authentication & Authorization) Tj
+ET
+endstream
+endobj
+33 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 34 0 R
+>>
+endobj
+34 0 obj
+<<
+/Length 4547
+>>
+stream
+0.5670000000000001 w
+0 G
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 785.1970866141732586 Td
+(API security is paramount to protect sensitive data and prevent unauthorized access. It involves) Tj
+T* (several layers of defense.) Tj
+T* () Tj
+T* (**HTTPS & TLS Overview:**) Tj
+T* (*   **HTTPS \(Hypertext Transfer Protocol Secure\):** The secure version of HTTP. It encrypts) Tj
+T* (communication between the client and server, preventing eavesdropping and tampering.) Tj
+T* (*   **TLS \(Transport Layer Security\):** The cryptographic protocol that provides secure) Tj
+T* (communication over a computer network. HTTPS uses TLS to encrypt data.) Tj
+T* () Tj
+T* (**Authentication:** Verifying the identity of a client.) Tj
+T* (*   **Basic Authentication:** Sends username and password \(Base64 encoded\) in the) Tj
+T* (`Authorization` header. Simple but insecure without HTTPS.) Tj
+T* (*   **Token-Based Authentication:** After initial login, the server issues a token \(e.g., JWT\). The) Tj
+T* (client sends this token with every subsequent request. More scalable and stateless.) Tj
+T* (*   **OAuth2 Concepts:** An authorization framework, not an authentication protocol itself. It) Tj
+T* (allows third-party applications to obtain limited access to an HTTP service on behalf of a) Tj
+T* (resource owner. Uses access tokens.) Tj
+T* (*   **JWT \(JSON Web Tokens\) – Structure & Usage:**) Tj
+T* (    *   **Structure:** Consists of three parts separated by dots: `Header.Payload.Signature`.) Tj
+T* (        *   **Header:** Type of token \(JWT\) and signing algorithm \(e.g., HS256\).) Tj
+T* (        *   **Payload:** Claims \(statements about an entity, e.g., user ID, roles, expiration time\).) Tj
+T* (        *   **Signature:** Used to verify the sender of the JWT and that the message hasn't been) Tj
+T* (tampered with.) Tj
+T* (    *   **Usage:** After a user logs in, the server issues a JWT. The client stores it and sends it in) Tj
+T* (the `Authorization: Bearer <token>` header for subsequent requests.) Tj
+T* () Tj
+T* (**Authorization:** Determining if an authenticated client has permission to perform a specific) Tj
+T* (action on a specific resource.) Tj
+T* (*   **Securing Endpoints based on Roles and Permissions:** Assigning roles \(e.g., ADMIN,) Tj
+T* (USER\) to users and defining which roles have access to which API endpoints or specific actions) Tj
+T* (\(e.g., only ADMIN can DELETE /products\).) Tj
+T* () Tj
+T* (**CORS: Concepts and Configuration:**) Tj
+T* (*   **Concept:** A browser security mechanism that restricts web pages from making requests to) Tj
+T* (a different domain than the one that served the web page. This prevents malicious scripts from) Tj
+T* (making requests to other sites on your behalf.) Tj
+T* (*   **Configuration:** The server needs to send specific CORS headers \(e.g.,) Tj
+T* (`Access-Control-Allow-Origin`\) in its response to explicitly allow requests from specified origins.) Tj
+T* () Tj
+T* (**API Rate Limiting & Throttling:**) Tj
+T* (*   **Rate Limiting:** Controls the number of requests a client can make to an API within a given) Tj
+T* (timeframe. Prevents abuse, brute-force attacks, and ensures fair usage.) Tj
+T* (*   **Throttling:** Similar to rate limiting but often implies a more sustained control over resource) Tj
+T* (consumption.) Tj
+T* () Tj
+T* (**Input Sanitization & Preventing Common Attacks:**) Tj
+T* (*   **Input Sanitization:** Cleaning, filtering, or escaping user input to remove potentially harmful) Tj
+T* (characters or code before processing it. Crucial for security.) Tj
+T* (*   **Preventing Common Attacks:**) Tj
+T* (    *   **SQL Injection:** Don't concatenate user input directly into SQL queries. Use prepared) Tj
+T* (statements or ORMs.) Tj
+T* (    *   **XSS \(Cross-Site Scripting\):** Sanitize output to prevent malicious scripts from being) Tj
+T* (injected into web pages.) Tj
+T* (    *   **CSRF \(Cross-Site Request Forgery\):** Use anti-CSRF tokens to ensure that requests) Tj
+T* (originate from legitimate sources.) Tj
+T* (    *   **Authentication bypass:** Ensure proper validation of credentials and tokens, prevent) Tj
+T* (weak password policies, and implement account lockout mechanisms.) Tj
+T* () Tj
+T* (**Secure API Logging and Auditing:**) Tj
+T* (*   **Logging:** Record security-relevant events \(e.g., failed login attempts, access to sensitive) Tj
+T* (data\). Avoid logging sensitive information directly \(passwords, tokens\).) Tj
+T* (*   **Auditing:** Regularly review logs to detect suspicious activities and maintain compliance.) Tj
+ET
+endstream
+endobj
+35 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 36 0 R
+>>
+endobj
+36 0 obj
+<<
+/Length 2921
+>>
+stream
+0.5670000000000001 w
+0 G
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 785.1970866141732586 Td
+(Example:) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 754.0159842519684616 Td
+(JWT Payload example:) Tj
+T* () Tj
+T* ({) Tj
+T* (  "sub": "1234567890",) Tj
+T* (  "name": "John Doe",) Tj
+T* (  "admin": true,) Tj
+T* (  "iat": 1516239022) Tj
+T* (}) Tj
+T* () Tj
+ET
+BT
+/F2 16 Tf
+18.3999999999999986 TL
+0 g
+42.5196850393700814 564.0947244094487587 Td
+(Important Points) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 535.748267716535338 Td
+(• REST is an architectural style based on HTTP, not a strict protocol.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 504.5671653543306547 Td
+(• Statelessness is a core REST constraint, meaning each request is independent.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 473.3860629921259147 Td
+(• HTTP methods \(GET, POST, PUT, DELETE, PATCH\) have specific, expected semantics.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 442.2049606299212314 Td
+(• URIs should identify resources \(nouns\), and HTTP methods should describe actions \(verbs\).) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 411.0238582677164914 Td
+(• HTTP status codes are essential for clear communication of request outcomes.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 379.8427559055117513 Td
+(• JSON is the most common data format for RESTful APIs due to its simplicity.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 348.6616535433070112 Td
+(• OpenAPI Specification \(Swagger\) is the de-facto standard for API documentation.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 317.480551181102328 Td
+(• API security involves multiple layers: HTTPS, Authentication, Authorization, Input Validation,) Tj
+T* (and Rate Limiting.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 266.4569291338582389 Td
+(• JWTs provide a stateless way to manage authentication tokens.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 235.2758267716534419 Td
+(• CORS addresses browser-based security restrictions for cross-origin requests.) Tj
+ET
+BT
+/F2 16 Tf
+18.3999999999999986 TL
+0 g
+42.5196850393700814 204.0947244094487587 Td
+(Revision Notes) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 175.748267716535338 Td
+(• REST: Architectural style, stateless, uniform interface, client-server, cacheable.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 144.5671653543306547 Td
+(• HTTP Methods: GET \(retrieve\), POST \(create\), PUT \(replace\), DELETE \(remove\), PATCH) Tj
+T* (\(partial update\).) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 93.5435433070865656 Td
+(• Status Codes: 2xx \(Success\), 4xx \(Client Error\), 5xx \(Server Error\).) Tj
+ET
+endstream
+endobj
+37 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 38 0 R
+>>
+endobj
+38 0 obj
+<<
+/Length 3652
+>>
+stream
+0.5670000000000001 w
+0 G
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 785.1970866141732586 Td
+(• URI Design: Nouns, plural for collections, hierarchical structure.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 754.0159842519684616 Td
+(• HATEOAS: Hypermedia links for API discoverability.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 722.8348818897637784 Td
+(• API Versioning: URI, Header, Query Param methods to manage API evolution.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 691.6537795275589815 Td
+(• JSON: Lightweight data format, key-value pairs, arrays.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 660.4726771653542983 Td
+(• Content Negotiation: `Accept` \(client prefers\) and `Content-Type` \(actual format\) headers.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 629.291574803149615 Td
+(• OpenAPI/Swagger: Standard for API documentation and interactive UI.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 598.1104724409448181 Td
+(• API Testing: Postman, cURL for integration; JUnit for unit tests.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 566.9293700787401349 Td
+(• HTTPS/TLS: Encrypts communication, foundational for security.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 535.748267716535338 Td
+(• Authentication: Basic, Token, OAuth2, JWT for identity verification.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 504.5671653543306547 Td
+(• JWT: Header.Payload.Signature; self-contained, signed token.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 473.3860629921259147 Td
+(• Authorization: Roles/permissions to control access to resources.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 442.2049606299212314 Td
+(• CORS: Browser security, server-controlled `Access-Control-Allow-Origin` header.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 411.0238582677164914 Td
+(• Rate Limiting: Controls request frequency, prevents abuse.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 379.8427559055117513 Td
+(• Input Sanitization: Clean user input to prevent attacks like SQL Injection, XSS.) Tj
+ET
+BT
+/F2 16 Tf
+18.3999999999999986 TL
+0 g
+42.5196850393700814 348.6616535433070112 Td
+(Memory Tricks) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 320.3151968503935905 Td
+(• **REST Constraints \(CLCULS\):** Client-Server, Layered System, Cacheable, Uniform) Tj
+T* (Interface, Statelessness. \(C-L-C-U-L-S, pronounce 'clicks' for short\).) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 269.2915748031495013 Td
+(• **HTTP Methods \(CRUD-P\):** Create \(POST\), Read \(GET\), Update \(PUT/PATCH\), Delete) Tj
+T* (\(DELETE\). The 'P' is for PATCH, or think of PUT as 'Replace Entirely'.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 218.2679527559054122 Td
+(• **Status Codes \(1,2,3,4,5\):** 1-Informational, 2-Success, 3-Redirect, 4-Client Error, 5-Server) Tj
+T* (Error.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 167.2443307086613231 Td
+(• **URI Nouns:** Think of a database table name - always plural nouns.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 136.0632283464566399 Td
+(• **JWT Parts \(HPS\):** Header, Payload, Signature.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 104.882125984251843 Td
+(• **CORS Origin:** The 'O' in CORS means 'Other Origin' – the server needs to say 'OK' to) Tj
+T* (requests from other origins.) Tj
+ET
+endstream
+endobj
+39 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 40 0 R
+>>
+endobj
+40 0 obj
+<<
+/Length 3610
+>>
+stream
+0.5670000000000001 w
+0 G
+BT
+/F2 16 Tf
+18.3999999999999986 TL
+0 g
+42.5196850393700814 785.1970866141732586 Td
+(Common Mistakes) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 756.8506299212598378 Td
+(• **Using verbs in URIs:** E.g., `/getAllUsers` instead of `/users` and `GET` method.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 725.6695275590550409 Td
+(• **Not using appropriate HTTP status codes:** Returning `200 OK` for an error condition.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 694.4884251968503577 Td
+(• **Making APIs stateful:** Storing client-specific data on the server between requests in a REST) Tj
+T* (API.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 643.4648031496062686 Td
+(• **Lack of input validation:** Leading to security vulnerabilities like SQL injection or XSS.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 612.2837007874015853 Td
+(• **Exposing sensitive data in API responses:** Over-fetching or returning too much information.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 581.1025984251967884 Td
+(• **Ignoring API versioning:** Breaking existing clients with changes to the API.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 549.9214960629921052 Td
+(• **Poor or absent documentation:** Makes API difficult to use and maintain.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 518.7403937007873083 Td
+(• **Not implementing HTTPS:** Sending sensitive data over an unencrypted channel.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 487.559291338582625 Td
+(• **Misunderstanding Authentication vs. Authorization:** Confusing who a user is \(AuthN\) with) Tj
+T* (what they can do \(AuthZ\).) Tj
+ET
+BT
+/F2 16 Tf
+18.3999999999999986 TL
+0 g
+42.5196850393700814 436.5356692913385359 Td
+(Real World Applications) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 408.1892125984251152 Td
+(• Building backend services for mobile applications \(e.g., social media apps, e-commerce\).) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 377.0081102362204319 Td
+(• Creating microservices architectures where different services communicate via REST APIs.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 345.8270078740156919 Td
+(• Developing public APIs for third-party developers \(e.g., payment gateways, mapping services\).) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 314.6459055118109518 Td
+(• Integrating different enterprise systems \(e.g., CRM with ERP\).) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 283.4648031496062686 Td
+(• Enabling Single Page Applications \(SPAs\) and dynamic web interfaces to fetch and update) Tj
+T* (data.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 232.4411811023621794 Td
+(• IoT device communication where devices send data to a central server via REST endpoints.) Tj
+ET
+BT
+/F2 16 Tf
+18.3999999999999986 TL
+0 g
+42.5196850393700814 201.2600787401573825 Td
+(MCQs) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 172.9136220472439618 Td
+(1. Which of the following is NOT a core architectural constraint of REST?) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 141.7325196850392786 Td
+(Client-Server) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 110.5514173228345953 Td
+(Statelessness) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 79.3703149606297984 Td
+(Session Management) Tj
+ET
+endstream
+endobj
+41 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 42 0 R
+>>
+endobj
+42 0 obj
+<<
+/Length 2680
+>>
+stream
+0.5670000000000001 w
+0 G
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 785.1970866141732586 Td
+(Uniform Interface) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 754.0159842519684616 Td
+(Answer: Session Management) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 722.8348818897637784 Td
+(2. Which HTTP method is typically used to partially update an existing resource?) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 691.6537795275589815 Td
+(PUT) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 660.4726771653542983 Td
+(POST) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 629.291574803149615 Td
+(PATCH) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 598.1104724409448181 Td
+(GET) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 566.9293700787401349 Td
+(Answer: PATCH) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 535.748267716535338 Td
+(3. What HTTP status code indicates that a resource has been successfully created?) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 504.5671653543306547 Td
+(200 OK) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 473.3860629921259147 Td
+(201 Created) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 442.2049606299212314 Td
+(204 No Content) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 411.0238582677164914 Td
+(400 Bad Request) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 379.8427559055117513 Td
+(Answer: 201 Created) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 348.6616535433070112 Td
+(4. In RESTful API design, URIs should primarily consist of:) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 317.480551181102328 Td
+(Verbs) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 286.2994488188975311 Td
+(Nouns) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 255.1183464566928478 Td
+(Adjectives) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 223.9372440944881646 Td
+(Functions) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 192.7561417322833677 Td
+(Answer: Nouns) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 161.5750393700786844 Td
+(5. Which HTTP header is used by the client to indicate the preferred media type for the) Tj
+T* (response?) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 110.5514173228345953 Td
+(Content-Type) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 79.3703149606297984 Td
+(Accept) Tj
+ET
+endstream
+endobj
+43 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 44 0 R
+>>
+endobj
+44 0 obj
+<<
+/Length 2959
+>>
+stream
+0.5670000000000001 w
+0 G
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 785.1970866141732586 Td
+(Authorization) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 754.0159842519684616 Td
+(User-Agent) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 722.8348818897637784 Td
+(Answer: Accept) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 691.6537795275589815 Td
+(6. What does HATEOAS stand for in the context of REST?) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 660.4726771653542983 Td
+(Hypertext As The Engine Of Application State) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 629.291574803149615 Td
+(Hypermedia As The Engine Of Application State) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 598.1104724409448181 Td
+(High-Availability Transfer Of Application Services) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 566.9293700787401349 Td
+(Hierarchical Access To Enterprise Objects And Services) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 535.748267716535338 Td
+(Answer: Hypermedia As The Engine Of Application State) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 504.5671653543306547 Td
+(7. Which API versioning strategy involves including the version number directly in the URL path,) Tj
+T* (like `/v2/users`?) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 453.5435433070865656 Td
+(Header-based versioning) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 422.3624409448818255 Td
+(Query parameter versioning) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 391.1813385826770855 Td
+(URI versioning) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 360.0002362204724022 Td
+(Media type versioning) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 328.8191338582676053 Td
+(Answer: URI versioning) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 297.6380314960629221 Td
+(8. Which part of a JSON Web Token \(JWT\) contains claims about the entity and additional data?) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 266.4569291338582389 Td
+(Header) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 235.2758267716534419 Td
+(Signature) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 204.0947244094487587 Td
+(Payload) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 172.9136220472439618 Td
+(Algorithm) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 141.7325196850392786 Td
+(Answer: Payload) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 110.5514173228345953 Td
+(9. What is the primary purpose of CORS in web security?) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 79.3703149606297984 Td
+(To encrypt all data transfer over HTTP) Tj
+ET
+endstream
+endobj
+45 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 46 0 R
+>>
+endobj
+46 0 obj
+<<
+/Length 3007
+>>
+stream
+0.5670000000000001 w
+0 G
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 785.1970866141732586 Td
+(To prevent SQL Injection attacks) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 754.0159842519684616 Td
+(To restrict web pages from making requests to different domains) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 722.8348818897637784 Td
+(To authenticate users based on tokens) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 691.6537795275589815 Td
+(Answer: To restrict web pages from making requests to different domains) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 660.4726771653542983 Td
+(10. Which of the following is an example of an idempotent HTTP method?) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 629.291574803149615 Td
+(POST) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 598.1104724409448181 Td
+(PATCH) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 566.9293700787401349 Td
+(GET) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 535.748267716535338 Td
+(All of the above) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 504.5671653543306547 Td
+(Answer: GET) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 473.3860629921259147 Td
+(11. What is the role of a 'Service Layer' in a typical API implementation architecture?) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 442.2049606299212314 Td
+(To handle HTTP requests directly) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 411.0238582677164914 Td
+(To manage database connections only) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 379.8427559055117513 Td
+(To encapsulate business logic and orchestrate operations) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 348.6616535433070112 Td
+(To generate API documentation) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 317.480551181102328 Td
+(Answer: To encapsulate business logic and orchestrate operations) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 286.2994488188975311 Td
+(12. Which tool is commonly used for interactive API documentation generation from an OpenAPI) Tj
+T* (Specification?) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 235.2758267716534419 Td
+(Postman) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 204.0947244094487587 Td
+(cURL) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 172.9136220472439618 Td
+(Swagger UI) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 141.7325196850392786 Td
+(JUnit) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 110.5514173228345953 Td
+(Answer: Swagger UI) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 79.3703149606297984 Td
+(13. Input sanitization is primarily a defense against what type of attack?) Tj
+ET
+endstream
+endobj
+47 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 48 0 R
+>>
+endobj
+48 0 obj
+<<
+/Length 3358
+>>
+stream
+0.5670000000000001 w
+0 G
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 785.1970866141732586 Td
+(DDoS attacks) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 754.0159842519684616 Td
+(Phishing attacks) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 722.8348818897637784 Td
+(Malicious data injection \(e.g., SQL Injection, XSS\)) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 691.6537795275589815 Td
+(Brute-force authentication) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 660.4726771653542983 Td
+(Answer: Malicious data injection \(e.g., SQL Injection, XSS\)) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 629.291574803149615 Td
+(14. What is the core difference between authentication and authorization?) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 598.1104724409448181 Td
+(Authentication grants access, Authorization verifies identity.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 566.9293700787401349 Td
+(Authentication verifies identity, Authorization grants access.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 535.748267716535338 Td
+(They are synonyms and perform the same function.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 504.5671653543306547 Td
+(Authentication is for public APIs, Authorization is for private APIs.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 473.3860629921259147 Td
+(Answer: Authentication verifies identity, Authorization grants access.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 442.2049606299212314 Td
+(15. When designing an API for long-running tasks, what strategy helps prevent client timeouts) Tj
+T* (and improves user experience?) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 391.1813385826770855 Td
+(Using synchronous blocking calls) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 360.0002362204724022 Td
+(Increasing the client's timeout duration significantly) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 328.8191338582676053 Td
+(Implementing asynchronous API operations with status polling) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 297.6380314960629221 Td
+(Returning a 500 Internal Server Error immediately) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 266.4569291338582389 Td
+(Answer: Implementing asynchronous API operations with status polling) Tj
+ET
+BT
+/F2 16 Tf
+18.3999999999999986 TL
+0 g
+42.5196850393700814 235.2758267716534419 Td
+(Short Answer Questions) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 206.9293700787401349 Td
+(• Define API and explain what makes an API RESTful.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 175.748267716535338 Td
+(• List and briefly explain three core architectural constraints of REST.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 144.5671653543306547 Td
+(• Differentiate between GET and POST HTTP methods in terms of semantics and idempotency.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 113.3860629921258578 Td
+(• Explain the purpose of HTTP status codes and provide examples for success and client error) Tj
+T* (categories.) Tj
+ET
+endstream
+endobj
+49 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 50 0 R
+>>
+endobj
+50 0 obj
+<<
+/Length 3441
+>>
+stream
+0.5670000000000001 w
+0 G
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 785.1970866141732586 Td
+(• What are the main principles for designing clear and intuitive URIs in a RESTful API?) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 754.0159842519684616 Td
+(• Describe the concept of Content Negotiation and the role of `Accept` and `Content-Type`) Tj
+T* (headers.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 702.9923622047243725 Td
+(• Briefly explain the structure of a JSON Web Token \(JWT\).) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 671.8112598425196893 Td
+(• What is CORS and why is it important for web security?) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 640.6301574803148924 Td
+(• Name two common API versioning strategies and state one advantage for each.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 609.4490551181102092 Td
+(• What is the significance of OpenAPI Specification \(Swagger\) in API development?) Tj
+ET
+BT
+/F2 16 Tf
+18.3999999999999986 TL
+0 g
+42.5196850393700814 578.2679527559055259 Td
+(Long Answer Questions) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 549.9214960629921052 Td
+(• Discuss the evolution of web services, comparing and contrasting SOAP and REST) Tj
+T* (architectural styles in detail, including their advantages and disadvantages.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 498.8978740157479592 Td
+(• Explain each of the six REST architectural constraints, providing practical examples of how) Tj
+T* (they influence API design and implementation.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 447.8742519685038701 Td
+(• Detail the various HTTP methods \(GET, POST, PUT, DELETE, PATCH\) and their specific) Tj
+T* (semantics, including when each should be used and their idempotency characteristics. Provide) Tj
+T* (examples for a 'Product' resource.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 377.0081102362204319 Td
+(• Describe a comprehensive strategy for designing RESTful URIs, including guidelines for) Tj
+T* (resource identification, handling collections and individual items, and structuring related) Tj
+T* (resources. Illustrate with examples.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 306.1419685039369369 Td
+(• Explain the concept of HATEOAS and its importance in achieving a truly RESTful API. Provide) Tj
+T* (an example of a resource representation that incorporates hypermedia controls.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 255.1183464566928478 Td
+(• Discuss different API versioning strategies. Compare and contrast URI-based, Header-based,) Tj
+T* (and Query parameter-based versioning, highlighting their pros and cons and recommending) Tj
+T* (when to use each.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 184.2522047244093528 Td
+(• Explain the role of JSON in modern API development. Discuss the importance of JSON) Tj
+T* (Schema for data validation and consistency, and briefly compare JSON with XML and YAML.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 133.2285826771652637 Td
+(• Outline the key steps involved in implementing error handling in a RESTful API, emphasizing) Tj
+T* (the use of appropriate HTTP status codes and standardized error response bodies.) Tj
+ET
+endstream
+endobj
+51 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 52 0 R
+>>
+endobj
+52 0 obj
+<<
+/Length 3608
+>>
+stream
+0.5670000000000001 w
+0 G
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 785.1970866141732586 Td
+(• Provide a detailed explanation of API security, covering HTTPS, different authentication) Tj
+T* (mechanisms \(Basic, Token-Based, OAuth2, JWT\), and authorization concepts) Tj
+T* (\(roles/permissions\).) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 714.3309448818897636 Td
+(• Describe common API security threats such as SQL Injection, XSS, and CSRF. Explain how) Tj
+T* (input sanitization and other best practices can mitigate these vulnerabilities.) Tj
+ET
+BT
+/F2 16 Tf
+18.3999999999999986 TL
+0 g
+42.5196850393700814 663.3073228346456744 Td
+(Viva Questions) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 634.9608661417322537 Td
+(• What is the fundamental difference between a web service and a simple web page?) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 603.7797637795274568 Td
+(• If you have to design an API for 'books', how would you structure the URI for getting a single) Tj
+T* (book and for creating a new book?) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 552.7561417322833677 Td
+(• What HTTP status code would you return if a client tries to access a resource they are not) Tj
+T* (authorized to see?) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 501.7325196850393354 Td
+(• Can you name an HTTP method that is 'safe' and 'idempotent'?) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 470.5514173228345953 Td
+(• Why is statelessness a crucial concept in REST?) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 439.3703149606298552 Td
+(• What is the primary role of the `Accept` header in an HTTP request?) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 408.1892125984251152 Td
+(• How does a JSON Web Token \(JWT\) help in securing an API?) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 377.0081102362204319 Td
+(• What problem does CORS solve, and how does a server typically enable it?) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 345.8270078740156919 Td
+(• Why is API documentation important for developers, both internal and external?) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 314.6459055118109518 Td
+(• What is the difference between authenticating a user and authorizing their action?) Tj
+ET
+BT
+/F2 16 Tf
+18.3999999999999986 TL
+0 g
+42.5196850393700814 283.4648031496062686 Td
+(Interview Questions) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 255.1183464566928478 Td
+(• You are designing a REST API for an e-commerce platform. How would you model resources) Tj
+T* (for 'products', 'categories', and 'customers'? Provide example URIs for CRUD operations.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 204.0947244094487587 Td
+(• Explain the concept of idempotency with respect to HTTP methods. Give an example where an) Tj
+T* (idempotent method is beneficial and one where a non-idempotent method is necessary.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 153.0711023622046696 Td
+(• A client reports that their requests to your API are being blocked by the browser. What is the) Tj
+T* (most likely cause, and how would you, as the API developer, address it?) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 102.0474803149605805 Td
+(• Discuss the trade-offs between different API versioning strategies. Which one would you) Tj
+T* (choose for a public-facing API and why?) Tj
+ET
+endstream
+endobj
+53 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 54 0 R
+>>
+endobj
+54 0 obj
+<<
+/Length 3494
+>>
+stream
+0.5670000000000001 w
+0 G
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 785.1970866141732586 Td
+(• Describe a scenario where a REST API might benefit from implementing HATEOAS. What are) Tj
+T* (the challenges in its adoption?) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 734.1734645669291695 Td
+(• How would you handle validation of incoming request bodies in a REST API? What are the key) Tj
+T* (considerations for effective server-side validation?) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 683.1498425196850803 Td
+(• Explain the flow of a token-based authentication system using JWTs. What are the advantages) Tj
+T* (of JWTs over traditional session-based authentication?) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 632.1262204724408775 Td
+(• Your API experiences unusually high traffic from a single IP address, potentially indicating an) Tj
+T* (attack. What security measures would you consider implementing or strengthening?) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 581.1025984251967884 Td
+(• You need to allow users to upload profile pictures to your API. How would you design the API) Tj
+T* (endpoint for this, considering HTTP methods and content types?) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 530.0789763779526993 Td
+(• Imagine your API needs to perform a long-running data processing task. How would you) Tj
+T* (design the API interaction to provide a good user experience without keeping the client waiting) Tj
+T* (indefinitely?) Tj
+ET
+BT
+/F2 16 Tf
+18.3999999999999986 TL
+0 g
+42.5196850393700814 459.2128346456692611 Td
+(Last Minute Revision) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 430.8663779527558404 Td
+(• REST is stateless, uses HTTP, resources are nouns.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 399.6852755905511003 Td
+(• GET, PUT, DELETE are idempotent; POST, PATCH are not.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 368.5041732283464171 Td
+(• 2xx for success, 4xx for client errors, 5xx for server errors.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 337.323070866141677 Td
+(• URIs should use plural nouns and be hierarchical.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 306.1419685039369369 Td
+(• HATEOAS means API is self-discoverable via links.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 274.9608661417322537 Td
+(• API versioning prevents breaking changes \(URI, Header, Query Param\).) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 243.7797637795274568 Td
+(• JSON is the standard data format; XML/YAML are alternatives.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 212.5986614173227736 Td
+(• Content negotiation uses Accept/Content-Type headers.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 181.4175590551179766 Td
+(• OpenAPI/Swagger auto-documents API interactions.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 150.2364566929132934 Td
+(• Automated testing \(Postman, JUnit\) ensures API quality.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 119.0553543307086102 Td
+(• HTTPS encrypts communication; TLS is the protocol.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 87.8742519685038133 Td
+(• Authentication: who you are. Authorization: what you can do.) Tj
+ET
+endstream
+endobj
+55 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 56 0 R
+>>
+endobj
+56 0 obj
+<<
+/Length 1640
+>>
+stream
+0.5670000000000001 w
+0 G
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 785.1970866141732586 Td
+(• JWTs are signed, stateless tokens: Header.Payload.Signature.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 754.0159842519684616 Td
+(• CORS protects against cross-origin browser requests; server allows origins.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 722.8348818897637784 Td
+(• Rate limiting prevents abuse by controlling request volume.) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 691.6537795275589815 Td
+(• Sanitize all input to prevent SQLi, XSS, CSRF attacks.) Tj
+ET
+BT
+/F2 16 Tf
+18.3999999999999986 TL
+0 g
+42.5196850393700814 660.4726771653542983 Td
+(Summary) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 632.1262204724408775 Td
+(This course provides a comprehensive understanding of RESTful API design and) Tj
+T* (implementation. It covers the foundational concepts of REST architecture, including its core) Tj
+T* (constraints, and delves into HTTP fundamentals essential for API development. Key aspects) Tj
+T* (include resource modeling, URI design, data formats like JSON, and advanced topics such as) Tj
+T* (API versioning, documentation with OpenAPI, and robust testing strategies. A significant portion) Tj
+T* (is dedicated to API security, encompassing authentication \(OAuth2, JWT\), authorization, CORS,) Tj
+T* (rate limiting, and protection against common web vulnerabilities. The course aims to equip) Tj
+T* (students with the knowledge to design, build, and secure scalable and maintainable RESTful) Tj
+T* (APIs.) Tj
+ET
+endstream
+endobj
+1 0 obj
+<</Type /Pages
+/Kids [3 0 R 5 0 R 7 0 R 9 0 R 11 0 R 13 0 R 15 0 R 17 0 R 19 0 R 21 0 R 23 0 R 25 0 R 27 0 R 29 0 R 31 0 R 33 0 R 35 0 R 37 0 R 39 0 R 41 0 R 43 0 R 45 0 R 47 0 R 49 0 R 51 0 R 53 0 R 55 0 R ]
+/Count 27
+>>
+endobj
+57 0 obj
+<<
+/Type /Font
+/BaseFont /Helvetica
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+58 0 obj
+<<
+/Type /Font
+/BaseFont /Helvetica-Bold
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+59 0 obj
+<<
+/Type /Font
+/BaseFont /Helvetica-Oblique
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+60 0 obj
+<<
+/Type /Font
+/BaseFont /Helvetica-BoldOblique
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+61 0 obj
+<<
+/Type /Font
+/BaseFont /Courier
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+62 0 obj
+<<
+/Type /Font
+/BaseFont /Courier-Bold
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+63 0 obj
+<<
+/Type /Font
+/BaseFont /Courier-Oblique
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+64 0 obj
+<<
+/Type /Font
+/BaseFont /Courier-BoldOblique
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+65 0 obj
+<<
+/Type /Font
+/BaseFont /Times-Roman
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+66 0 obj
+<<
+/Type /Font
+/BaseFont /Times-Bold
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+67 0 obj
+<<
+/Type /Font
+/BaseFont /Times-Italic
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+68 0 obj
+<<
+/Type /Font
+/BaseFont /Times-BoldItalic
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+69 0 obj
+<<
+/Type /Font
+/BaseFont /ZapfDingbats
+/Subtype /Type1
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+70 0 obj
+<<
+/Type /Font
+/BaseFont /Symbol
+/Subtype /Type1
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+2 0 obj
+<<
+/ProcSet [/PDF /Text /ImageB /ImageC /ImageI]
+/Font <<
+/F1 57 0 R
+/F2 58 0 R
+/F3 59 0 R
+/F4 60 0 R
+/F5 61 0 R
+/F6 62 0 R
+/F7 63 0 R
+/F8 64 0 R
+/F9 65 0 R
+/F10 66 0 R
+/F11 67 0 R
+/F12 68 0 R
+/F13 69 0 R
+/F14 70 0 R
+>>
+/XObject <<
+>>
+>>
+endobj
+71 0 obj
+<<
+/Producer (jsPDF 4.2.1)
+/CreationDate (D:20260627175158+05'30')
+>>
+endobj
+72 0 obj
+<<
+/Type /Catalog
+/Pages 1 0 R
+/OpenAction [3 0 R /FitH null]
+/PageLayout /OneColumn
+>>
+endobj
+xref
+0 73
+0000000000 65535 f 
+0000075930 00000 n 
+0000077932 00000 n 
+0000000015 00000 n 
+0000000152 00000 n 
+0000003449 00000 n 
+0000003586 00000 n 
+0000007213 00000 n 
+0000007350 00000 n 
+0000009357 00000 n 
+0000009495 00000 n 
+0000012757 00000 n 
+0000012896 00000 n 
+0000013105 00000 n 
+0000013244 00000 n 
+0000017407 00000 n 
+0000017546 00000 n 
+0000017759 00000 n 
+0000017898 00000 n 
+0000021623 00000 n 
+0000021762 00000 n 
+0000022546 00000 n 
+0000022685 00000 n 
+0000025450 00000 n 
+0000025589 00000 n 
+0000026467 00000 n 
+0000026606 00000 n 
+0000030432 00000 n 
+0000030571 00000 n 
+0000031211 00000 n 
+0000031350 00000 n 
+0000034358 00000 n 
+0000034497 00000 n 
+0000034709 00000 n 
+0000034848 00000 n 
+0000039448 00000 n 
+0000039587 00000 n 
+0000042561 00000 n 
+0000042700 00000 n 
+0000046405 00000 n 
+0000046544 00000 n 
+0000050207 00000 n 
+0000050346 00000 n 
+0000053079 00000 n 
+0000053218 00000 n 
+0000056230 00000 n 
+0000056369 00000 n 
+0000059429 00000 n 
+0000059568 00000 n 
+0000062979 00000 n 
+0000063118 00000 n 
+0000066612 00000 n 
+0000066751 00000 n 
+0000070412 00000 n 
+0000070551 00000 n 
+0000074098 00000 n 
+0000074237 00000 n 
+0000076167 00000 n 
+0000076293 00000 n 
+0000076424 00000 n 
+0000076558 00000 n 
+0000076696 00000 n 
+0000076820 00000 n 
+0000076949 00000 n 
+0000077081 00000 n 
+0000077217 00000 n 
+0000077345 00000 n 
+0000077472 00000 n 
+0000077601 00000 n 
+0000077734 00000 n 
+0000077836 00000 n 
+0000078185 00000 n 
+0000078271 00000 n 
+trailer
+<<
+/Size 73
+/Root 72 0 R
+/Info 71 0 R
+/ID [ <83FDFBAFF56B436B98DDA5790D75FCC1> <83FDFBAFF56B436B98DDA5790D75FCC1> ]
+>>
+startxref
+78375
+%%EOF

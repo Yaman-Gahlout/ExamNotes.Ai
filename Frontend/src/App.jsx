@@ -64,5 +64,5 @@ function App() {
     </Routes>
   );
 }
-export const base_url = "http://localhost:9000";
+export const base_url = "https://examnotes-ai-backend-h8wo.onrender.com";
 export default App;

@@ -576,7 +576,7 @@ export default function UploadPage() {
                     </h3>
 
                     <span className="text-cyan-400 font-semibold">
-                      {progress}%
+                      {progress >= 100 ? 99 : progress}%
                     </span>
                   </div>
 
@@ -586,7 +586,7 @@ export default function UploadPage() {
                     <motion.div
                       initial={{ width: 0 }}
                       animate={{
-                        width: `${progress}%`,
+                        width: `${progress >= 100 ? 99 : progress}%`,
                       }}
                       transition={{
                         duration: 0.5,
